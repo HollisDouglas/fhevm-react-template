@@ -16,6 +16,18 @@ This SDK makes building with FHEVM simple, consistent, and developer-friendly. I
 - ✅ **Quick Setup**: Less than 10 lines of code to get started
 - ✅ **Multiple Examples**: Next.js showcase + governance dApp example
 
+
+## 🌐 Live Demo
+
+**🔗 Platform**: [https://fhe-corporate-governance-ultimate.vercel.app/-platform.vercel.app](https://fhe-corporate-governance-ultimate.vercel.app/-platform.vercel.app)
+
+**📱 Contract**: `0x7c04dD380e26B56899493ec7A654EdEf108A2414` (Sepolia)
+
+**🔍 Explorer**: [View on Etherscan](https://sepolia.etherscan.io/address/0x7c04dD380e26B56899493ec7A654EdEf108A2414)
+
+---
+
+
 ## 📦 What's Included
 
 This repository contains:
