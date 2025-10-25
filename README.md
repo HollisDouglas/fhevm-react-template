@@ -224,7 +224,7 @@ Check out our comprehensive video demonstration showing:
 - Confidential voting in action
 - Contract deployment and interaction
 
-[Watch demo.mp4](./demo.mp4)
+[Watch demo.mp4]
 
 ## 🛠️ Development
 
