@@ -1,15 +1,25 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { BrowserProvider, Contract } from 'ethers';
+import { BrowserProvider } from 'ethers';
+import { useFHEVM } from '@fhevm/sdk/react';
 import ConnectWallet from '@/components/ConnectWallet';
-import EncryptionDemo from '@/components/EncryptionDemo';
-import VotingDemo from '@/components/VotingDemo';
+import { EncryptionDemo } from '@/components/fhe/EncryptionDemo';
+import { ComputationDemo } from '@/components/fhe/ComputationDemo';
+import { KeyManager } from '@/components/fhe/KeyManager';
+import { BankingExample } from '@/components/examples/BankingExample';
+import { MedicalExample } from '@/components/examples/MedicalExample';
+
+// Example contract address (replace with your deployed contract)
+const CONTRACT_ADDRESS = '0x7c04dD380e26B56899493ec7A654EdEf108A2414';
 
 export default function Home() {
   const [account, setAccount] = useState<string>('');
   const [provider, setProvider] = useState<BrowserProvider | null>(null);
   const [connected, setConnected] = useState(false);
+  const [activeTab, setActiveTab] = useState<'demos' | 'examples'>('demos');
+
+  const { isInitialized, isLoading } = useFHEVM();
 
   useEffect(() => {
     checkConnection();
@@ -65,6 +75,12 @@ export default function Home() {
               <p className="text-gray-600">
                 Next.js example with confidential smart contracts
               </p>
+              {isInitialized && (
+                <div className="mt-2 inline-flex items-center px-3 py-1 rounded-full bg-green-100 text-green-700 text-sm">
+                  <span className="w-2 h-2 bg-green-500 rounded-full mr-2"></span>
+                  FHE Ready
+                </div>
+              )}
             </div>
             <ConnectWallet
               connected={connected}
@@ -106,13 +122,64 @@ export default function Home() {
             </div>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 gap-8">
-            {/* Encryption Demo */}
-            <EncryptionDemo account={account} />
+          <>
+            {/* Tab Navigation */}
+            <div className="flex gap-4 mb-8">
+              <button
+                onClick={() => setActiveTab('demos')}
+                className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+                  activeTab === 'demos'
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                Core Demos
+              </button>
+              <button
+                onClick={() => setActiveTab('examples')}
+                className={`px-6 py-3 rounded-lg font-semibold transition-colors ${
+                  activeTab === 'examples'
+                    ? 'bg-indigo-600 text-white'
+                    : 'bg-white text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                Use Cases
+              </button>
+            </div>
 
-            {/* Voting Demo */}
-            <VotingDemo account={account} provider={provider} />
-          </div>
+            {activeTab === 'demos' ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Encryption Demo */}
+                <EncryptionDemo
+                  contractAddress={CONTRACT_ADDRESS}
+                  userAddress={account}
+                />
+
+                {/* Computation Demo */}
+                <ComputationDemo
+                  contractAddress={CONTRACT_ADDRESS}
+                  userAddress={account}
+                />
+
+                {/* Key Manager */}
+                <KeyManager contractAddress={CONTRACT_ADDRESS} />
+              </div>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-8">
+                {/* Banking Example */}
+                <BankingExample
+                  contractAddress={CONTRACT_ADDRESS}
+                  userAddress={account}
+                />
+
+                {/* Medical Example */}
+                <MedicalExample
+                  contractAddress={CONTRACT_ADDRESS}
+                  userAddress={account}
+                />
+              </div>
+            )}
+          </>
         )}
 
         {/* Footer */}
