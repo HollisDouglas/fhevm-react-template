@@ -1,6 +1,6 @@
 # Universal FHEVM SDK
 
-A comprehensive, framework-agnostic SDK for building confidential smart contract frontends using Fully Homomorphic Encryption (FHE). This project provides everything developers need to integrate privacy-preserving encryption into their dApps with minimal setup.
+A comprehensive, framework-agnostic SDK for building confidential smart contract frontends using Fully Homomorphic Encryption (FHE). This project provides everything developers need to integrate privacy-preserving encryption into their applications with minimal setup.
 
 ## 🎯 Overview
 
@@ -14,12 +14,12 @@ This SDK makes building with FHEVM simple, consistent, and developer-friendly. I
 - ✅ **TypeScript First**: Full type safety with comprehensive TypeScript support
 - ✅ **Production Ready**: Battle-tested encryption/decryption flows following Zama's official guidelines
 - ✅ **Quick Setup**: Less than 10 lines of code to get started
-- ✅ **Multiple Examples**: Next.js showcase + governance dApp example
-
+- ✅ **Multiple Examples**: Next.js showcase with complete FHE integration + governance example
+- ✅ **Complete Templates**: Ready-to-use templates for rapid development
 
 ## 🌐 Live Demo
 
-**🔗 Platform**: [https://fhe-corporate-governance-ultimate.vercel.app/-platform.vercel.app](https://fhe-corporate-governance-ultimate.vercel.app/-platform.vercel.app)
+**🔗 Platform**: [https://fhe-corporate-governance-ultimate.vercel.app/](https://fhe-corporate-governance-ultimate.vercel.app/)
 
 **📱 Contract**: `0x7c04dD380e26B56899493ec7A654EdEf108A2414` (Sepolia)
 
@@ -27,15 +27,16 @@ This SDK makes building with FHEVM simple, consistent, and developer-friendly. I
 
 ---
 
-
 ## 📦 What's Included
 
 This repository contains:
 
-1. **`@fhevm/sdk`** - The core universal SDK package
-2. **Next.js Example** - Complete Next.js app demonstrating SDK usage
-3. **Governance dApp Example** - Real-world confidential voting system
-4. **Comprehensive Documentation** - Detailed guides and API references
+1. **`@fhevm/sdk`** - The core universal SDK package with utilities and validation
+2. **Next.js Template** - Production-ready Next.js template with full FHE integration
+3. **React Governance Example** - Real-world confidential voting system with React + Vite
+4. **Vue Governance Example** - Corporate governance application with Vue 3 + Composition API
+5. **Next.js Example** - Complete demonstration app with multiple use cases (Banking, Medical)
+6. **Comprehensive Documentation** - Detailed guides and API references
 
 ## 🚀 Quick Start
 
@@ -86,6 +87,22 @@ The universal FHEVM SDK that works everywhere. Features:
 
 [Read SDK Documentation →](./packages/fhevm-sdk/README.md)
 
+### Templates
+
+#### Next.js Template
+
+**Location**: [`templates/nextjs/`](./templates/nextjs/)
+
+Production-ready Next.js template featuring:
+- Complete FHEVM SDK integration
+- FHE Provider with context management
+- Custom hooks (useFHE, useEncryption, useComputation)
+- API routes for FHE operations (encrypt, decrypt, compute, keys)
+- Reusable FHE components (EncryptionDemo, ComputationDemo, KeyManager)
+- Use case examples (Banking, Medical Records)
+- Full TypeScript support
+- Tailwind CSS styling
+
 ### Examples
 
 #### 1. Next.js Example
@@ -95,53 +112,89 @@ The universal FHEVM SDK that works everywhere. Features:
 Complete Next.js application showcasing:
 - FHEVM SDK integration with React hooks
 - Wallet connection (MetaMask)
-- Encryption demonstration
-- Confidential voting UI
+- Encryption demonstration with multiple data types
+- Homomorphic computation demos
+- Key management interface
+- Real-world use cases (Banking, Medical)
 - Modern Tailwind CSS design
 
 [Read Next.js Example Docs →](./examples/nextjs-example/README.md)
 
-#### 2. Governance dApp Example
+#### 2. React Governance Example
 
 **Location**: [`examples/governance-dapp/`](./examples/governance-dapp/)
 
-Real-world confidential governance system featuring:
-- Smart contracts for corporate voting
-- Shareholder management
-- Confidential vote casting
+Real-world confidential governance system with React featuring:
+- Smart contracts for corporate voting with FHE
+- Shareholder management and voting
+- FHEVM SDK integration for confidential vote casting
 - Proposal lifecycle management
-- Hardhat development environment
+- Hardhat development environment with deployment scripts
+- React + Vite frontend with TypeScript
 
-[Read Governance Example Docs →](./examples/governance-dapp/README.md)
+[Read React Governance Docs →](./examples/governance-dapp/README.md)
+
+#### 3. Vue Governance Example
+
+**Location**: [`examples/CorporateGovernanceUltimate-main/`](./examples/CorporateGovernanceUltimate-main/)
+
+Corporate governance application with Vue 3 featuring:
+- Vue 3 Composition API with TypeScript
+- FHEVM SDK integration for confidential voting
+- Vue Router for navigation
+- Composables for wallet, contract, and FHE operations
+- Beautiful Tailwind CSS interface
+- Production-ready error handling and loading states
+
+[Read Vue Governance Docs →](./examples/CorporateGovernanceUltimate-main/README.md)
 
 ## 🏗️ Project Structure
 
 ```
-fhevm-sdk-template/
+fhevm-react-template/
 ├── packages/
 │   └── fhevm-sdk/              # Universal FHEVM SDK
 │       ├── src/
 │       │   ├── core/           # Framework-agnostic core
+│       │   │   ├── fhevm-client.ts   # Main FHEVM client
+│       │   │   ├── encryption.ts      # Encryption utilities
+│       │   │   └── decryption.ts      # Decryption utilities
 │       │   ├── react/          # React hooks
+│       │   │   ├── FHEVMProvider.tsx  # Context provider
+│       │   │   ├── useEncrypt.tsx     # Encryption hook
+│       │   │   └── useDecrypt.tsx     # Decryption hook
 │       │   ├── types/          # TypeScript types
 │       │   └── utils/          # Helper utilities
 │       ├── package.json
 │       └── README.md
 │
+├── templates/                  # Ready-to-use templates
+│   └── nextjs/                 # Next.js template
+│       ├── src/
+│       │   ├── app/            # Next.js App Router
+│       │   │   ├── api/        # API routes (FHE operations)
+│       │   │   ├── layout.tsx
+│       │   │   ├── page.tsx
+│       │   │   └── providers.tsx
+│       │   ├── components/     # React components
+│       │   │   ├── fhe/        # FHE-specific components
+│       │   │   ├── ui/         # UI components
+│       │   │   └── examples/   # Use case examples
+│       │   ├── hooks/          # Custom hooks
+│       │   ├── lib/            # FHE integration libraries
+│       │   │   ├── fhe/        # FHE client & server
+│       │   │   └── utils/      # Utilities
+│       │   └── types/          # TypeScript types
+│       ├── package.json
+│       └── README.md
+│
 ├── examples/
-│   ├── nextjs-example/         # Next.js showcase app
-│   │   ├── src/
-│   │   │   ├── app/            # Next.js App Router
-│   │   │   └── components/     # React components
-│   │   ├── package.json
-│   │   └── README.md
-│   │
+│   ├── nextjs-example/         # Next.js showcase (mirrors template)
 │   └── governance-dapp/        # Governance example
 │       ├── contracts/          # Solidity contracts
+│       ├── frontend/           # React frontend
 │       ├── scripts/            # Deployment scripts
-│       ├── test/               # Contract tests
-│       ├── hardhat.config.js
-│       └── README.md
+│       └── hardhat.config.js
 │
 ├── package.json                # Root workspace config
 ├── README.md                   # This file
